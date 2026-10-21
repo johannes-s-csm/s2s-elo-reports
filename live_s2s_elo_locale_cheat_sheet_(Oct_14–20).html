@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live S2S ELO: Locale Quality Cheat Sheet (Oct 14–20, 2026)</title>
+<style>
+  :root{
+    --bg:#f6f7fb; --card:#fff; --ink:#1b1f2a; --muted:#5b6475; --line:#e3e6ee;
+    --accent:#3b5bdb; --accent-soft:#e8edff; --bad:#c92a2a; --bad-soft:#fff0f0;
+    --good:#2b8a3e; --good-soft:#ebfbee; --warn:#e67700; --warn-soft:#fff4e6;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari","Noto Sans Bengali","Noto Sans Thai","Noto Sans Arabic","Noto Sans SC",sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;font-size:15px}
+  header{background:#1b1f2a;color:#fff;padding:22px 28px 18px}
+  header h1{margin:0 0 4px;font-size:22px;letter-spacing:.2px}
+  header p{margin:0;color:#c5cad6;font-size:13.5px}
+  nav{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line);padding:10px 20px;display:flex;flex-wrap:wrap;gap:6px}
+  nav button{border:1px solid var(--line);background:#fff;color:var(--ink);padding:6px 11px;border-radius:999px;font-size:13px;cursor:pointer;font-weight:500}
+  nav button:hover{border-color:var(--accent)}
+  nav button.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  nav button.univ{font-weight:700}
+  nav .pr{font-size:11px;opacity:.75;margin-left:4px}
+  main{max-width:1080px;margin:0 auto;padding:22px 20px 60px}
+  .page{display:none}
+  .page.active{display:block}
+  h2{font-size:21px;margin:0 0 4px}
+  h3{font-size:15px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:26px 0 10px}
+  .sub{color:var(--muted);margin:0 0 14px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 6px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .stat .k{font-size:11.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+  .stat .v{font-size:20px;font-weight:700;margin-top:2px}
+  .stat .v small{font-size:12px;font-weight:600}
+  .up{color:var(--good)} .down{color:var(--bad)}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .fix{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;position:relative}
+  .fix .n{position:absolute;top:12px;right:14px;font-size:12px;color:var(--muted);font-weight:700}
+  .fix h4{margin:0 0 8px;font-size:15.5px;padding-right:26px}
+  .row{display:flex;gap:8px;margin:6px 0;font-size:14px}
+  .tag{flex:0 0 auto;font-size:10.5px;font-weight:800;letter-spacing:.4px;padding:2px 7px;border-radius:5px;height:fit-content;margin-top:2px}
+  .tag.x{background:var(--bad-soft);color:var(--bad)}
+  .tag.ok{background:var(--good-soft);color:var(--good)}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 18px}
+  .panel ul{margin:10px 0;padding-left:20px}
+  .panel li{margin:6px 0}
+  .two{display:grid;grid-template-columns:1.25fr 1fr;gap:12px}
+  .stars li::marker{content:"★  ";color:var(--warn)}
+  .callout{background:var(--warn-soft);border:1px solid #ffd8a8;border-radius:10px;padding:10px 14px;font-size:14px;margin:12px 0}
+  .callout b{color:var(--warn)}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:14px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#f0f2f8;font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+  tr:last-child td{border-bottom:none}
+  code,.tmpl{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px}
+  .tmpl{background:#1b1f2a;color:#e9ecf5;border-radius:10px;padding:14px 16px;white-space:pre-wrap;line-height:1.55}
+  .native{font-size:15.5px}
+  .chk li{list-style:none;margin-left:-20px}
+  .chk li::before{content:"☐  ";color:var(--accent);font-weight:700}
+  footer{color:var(--muted);font-size:12.5px;text-align:center;padding:18px}
+  .ex{border-radius:10px;padding:12px 14px;font-size:14px;margin:8px 0}
+  .ex .lbl{font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:4px}
+  .ex.weak{background:var(--bad-soft);border:1px solid #ffc9c9}
+  .ex.weak .lbl{color:var(--bad)}
+  .ex.strong{background:var(--good-soft);border:1px solid #b2f2bb}
+  .ex.strong .lbl{color:var(--good)}
+  .ex .why{display:block;margin-top:6px;font-size:13px;color:var(--muted)}
+  .bars{display:grid;grid-template-columns:150px 1fr 44px;gap:6px 10px;align-items:center;font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+  .bar{height:10px;border-radius:6px;background:#edf0f7;overflow:hidden}
+  .bar span{display:block;height:100%;background:var(--accent)}
+  .bar.j span{background:var(--warn)}
+  .gap{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:14px}
+  .gap:last-child{border-bottom:none}
+  .gap b.c{color:var(--warn);white-space:nowrap}
+  .steps{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14px}
+  .step::before{counter-increment:s;content:counter(s);display:inline-block;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;text-align:center;font-weight:700;line-height:24px;margin-bottom:6px}
+  .step b{display:block;margin-bottom:2px}
+  @media (max-width:760px){.steps{grid-template-columns:1fr 1fr}.bars{grid-template-columns:110px 1fr 40px}}
+  @media (max-width:760px){.grid,.two{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+  @media print{
+    nav{display:none} .page{display:block !important;page-break-after:always} body{background:#fff}
+    header{background:#fff;color:#000;border-bottom:2px solid #000} header p{color:#333}
+    .fix,.panel,.stat{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Live S2S ELO: Locale Quality Cheat Sheet</h1>
+  <p>Window: Oct 14–20, 2026 (full week) · Built from 5,875 QA audits (67.49% pass, 1,910 fails) and the current project guidelines (last updated Oct 17). Pass = audit score 3 or higher. Updated Oct 21 with a new <b>Justify your choice</b> section.</p>
+</header>
+<nav id="nav"></nav>
+<main id="main"></main>
+<footer>Pass rates, week-over-week changes and “where fails came from” are computed from the Oct 21 Submission Insights export, covering the full Oct 14–20 week vs Oct 7–13 (Pacific time). They can differ slightly from the weekly report, which used data through Oct 20, 1:16 PM PT. Locale patterns and justification gaps are summarized from failed audit (score 1–2) QA comments, and gap counts are approximate. If anything here seems to conflict with the guidelines, the guidelines win. Raise it with your QM.</footer>
+
+<script>
+const LOCALES = [
+ {code:"hi_IN", name:"Hindi", pr:43.11, wow:+0.25, n:283,
+  drivers:["Audio Quality","Pronunciation / Accent","Scenario Adherence"],
+  focus:"Most failed audits came from missed <b>Wrong Gender</b> and <b>Wrong Accent</b> flags, plus Audio Quality and Conversational Dynamics calls that the evidence didn't support.",
+  fixes:[
+   {t:"Check every first-person verb ending against the voice", w:"Female-voiced model says <span class='native'>समझ गया, करता हूँ, सकता हूँ, बोलूँगा, इंतज़ार करूँगा</span> and Wrong Gender isn't flagged.", d:"Flag <b>Wrong Gender</b> and cite the turn and exact word. Exception: the model is playing a requested male persona."},
+   {t:"Flag non-native accent, even on short phrases", w:"English-accented delivery of phrases like <span class='native'>“हाँ यार”, “ऑलिव ऑयल”</span> goes unflagged.", d:"Flag <b>Wrong Accent/Variant</b>, quote the phrase and turn, and reflect it in NEA."},
+   {t:"Separate Hinglish from Wrong Language", w:"Whole English openers like “Oof, that sucks” or “Ooo, alternate history?” are left untagged outside a code-mix scenario.", d:"Natural Hinglish and words like “ok”, “hmm”, “one sec” are fine. Full English phrases or turns get <b>Wrong Language</b> and Task Success Partial (Fail if the model doesn't switch back after one correction). If the same stock opener is used before every search, also flag <b>Bridging</b>."},
+   {t:"Don't call AQ “both good” over clear artifacts", w:"Metallic breathing, major ticks at 0:00, or cut-off speech get rated Tie (both good).", d:"Log each clear artifact with turn and timestamp for each model, then apply the AQ selection table."},
+   {t:"Use the Timeline for CD", w:"CD is set to Tie despite a 4s+ stall or an interruption on one side.", d:"Check the Timeline. Asymmetric delays of 4s or more get <b>Latency</b>, and CD should favor the cleaner model."},
+   {t:"React to the model and finish every round", w:"Identical lines reused, the model's questions ignored, multi-round games cut short, or a specific ask turned generic (e.g., a bedtime story with no voices or sound effects).", d:"Answer what each model actually says. Complete every step in <i>What To Do</i>. In code-mix scenarios, start in Hindi and mix as the scenario prescribes."}
+  ],
+  checks:[
+   "<b>Script ≠ Bad ASR.</b> A Roman-script or mixed-script transcript is not Bad ASR on its own. Flag Bad ASR only when the model's reply shows it misunderstood.",
+   "<b>Persona exception:</b> gendered forms that fit a requested character (e.g., a historical male figure) are not Wrong Gender.",
+   "<b>Your audio counts.</b> Low-volume or noisy rater audio has been auto-failed. Use a quiet room and check your mic level.",
+   "If <i>you</i> switch to English first (e.g., “Bye bye”), the model following you is not Wrong Language."
+  ],
+  top:["Quote the exact gendered word and turn (e.g., “चेक करता हूँ” in T4).","State which dimension decided the vote for the scenario type (e.g., “Endpointing, so CD is the top priority”)."]
+ },
+ {code:"bn_IN", name:"Bengali", pr:48.18, wow:-8.38, n:413,
+  drivers:["Audio Quality","Model Wrong Language","Scenario Adherence"],
+  focus:"<b>Audio Quality calibration</b> is the biggest single issue. It appears in about 70% of Rating Dimension deductions, and the errors go both ways.",
+  fixes:[
+   {t:"Calibrate AQ in both directions", w:"Two errors: “both good” despite loud pops, distortion, or voice cracks, <i>and</i> picking a winner over one faint tick or a minor word-doubling.", d:"Only clear, noticeable issues swing AQ. If one model has a clear issue, prefer the clean model. If both do, prefer the less-bad model, or choose Both bad if they're comparable."},
+   {t:"Catch Hindi bleed", w:"The model answers in Hindi (e.g., <span class='native'>“जी, बताइए”</span>) and it isn't flagged.", d:"If the model <i>speaks</i> Hindi, flag <b>Wrong Language</b>. If only the transcript shows Hindi but the model understood you, it's not a model error."},
+   {t:"Lower Task Success when you flag Wrong Language or Instruction Following", w:"Wrong Language or Instruction Following gets flagged, but Task Success stays Pass.", d:"Partial if the model self-corrects or switches after one correction. Fail if it doesn't, or needs more than one correction."},
+   {t:"Separate Bengalish from English fillers", w:"Full English filler phrases (“Ooh, big copyright case? One sec.”) get treated like normal loanwords.", d:"Natural Bengalish and loanwords are fine. Full English phrases or turns get <b>Wrong Language</b>, plus <b>Bridging</b> if the same hand-off filler repeats."},
+   {t:"Keep accent out of CD", w:"Accent or misunderstanding is cited as a Conversational Dynamics issue.", d:"Accent goes under NEA plus <b>Wrong Accent/Variant</b>. Misunderstanding is <b>Bad ASR</b>. CD covers only turn-taking and timing."}
+  ],
+  checks:[
+   "<b>Register:</b> <span class='native'>আপনি</span> used with a casual or friendly user can sound like customer service. Use it as NEA evidence.",
+   "<b>Evidence format:</b> turn, then a short quote, then a timestamp. Don't paste long lists of timestamps. If an issue happens more than 3 times, give an estimated count and 3 examples.",
+   "English names or terms that fit a persona or topic are not Wrong Language."
+  ],
+  top:["Count and label artifacts per model (e.g., “MA: 12+ artifacts, warbling at 0:10–0:13”).","Romanize or quote the accented line as evidence for Wrong Accent."]
+ },
+ {code:"id_ID", name:"Indonesian", pr:46.74, wow:+1.29, n:430,
+  drivers:["Audio Quality","Latency","Scenario Adherence"],
+  focus:"<b>Latency and CD</b> mismatches, single-word <b>accent</b> misses, and rationales that contradict the vote. id_ID had the most Justification Quality deductions of any locale this week (117).",
+  fixes:[
+   {t:"Let latency move CD", w:"CD is rated “both good” while the rationale describes 12–20s stalls.", d:"Flag <b>Latency</b> for asymmetric gaps of about 4s or more (9s+ is Major). CD should favor the model without the stall."},
+   {t:"Don't over-flag interruptions", w:"Backchannels (“he-em”, “oke”) or a reply after a ~0.7s pause get flagged as Interrupted User.", d:"Flag only when the model talks over you and you stop, restart, or lose content."},
+   {t:"Flag accent on single words", w:"English or foreign-accented words (“alarm”, “super”) go unflagged.", d:"Flag <b>Wrong Accent/Variant</b> with the word and turn. Javanese-accented Indonesian is an accent issue. A reply fully in Javanese is Wrong Language."},
+   {t:"Make the rationale match your selections", w:"The text argues for B but the vote is A, or a non-tie dimension isn't explained.", d:"Use the rationale template. Re-read your selections against your text before submitting."},
+   {t:"Do every scenario action", w:"Not interrupting when the scenario says to, asking one question too few, only asking questions when the task says to discuss, or wording that changes meaning between models.", d:"Tick off each <i>What To Do</i> item for both models. Keep the meaning of your prompts identical."},
+   {t:"Record in a quiet place", w:"A mosque broadcast or background chatter makes a model stop itself, which leads to an auto-fail.", d:"Use a quiet room. If noise interrupts, restart the task rather than submitting."}
+  ],
+  checks:[
+   "<b>English with correct info:</b> don't lower Utility. Score it under Wrong Language and Task Success (Partial/Fail), unless the language actually makes the answer less useful.",
+   "Formal <b>“Anda”</b> in a casual chat lowers NEA.",
+   "A voice or persona shift mid-conversation is an <b>Audio Quality</b> issue.",
+   "Reading lyrics instead of singing when singing was asked = Task Success Partial."
+  ],
+  top:["Pin naturalness slips to exact words (e.g., “lebih banyak”, “dia menang”).","Give per-model artifact counts with examples."]
+ },
+ {code:"ar_EG", name:"Arabic (Egyptian)", pr:60.56, wow:-6.25, n:426,
+  drivers:["Audio Quality","Model Wrong Language","Scenario Adherence"],
+  focus:"Missed <b>Wrong Gender</b> in both directions, untagged <b>MSA/Gulf variant</b>, and Utility called “both good” despite factual errors.",
+  fixes:[
+   {t:"Check gender in both directions", w:"The model misgenders the user (e.g., <span class='native'>انتي / هتختاري</span> to a male user) or a female voice uses <span class='native'>مبسوط، عارف، فاهم، قاعد</span>.", d:"Flag <b>Wrong Gender</b>. Misgendering the user is Major. Check second-person verbs and pronouns as well as self-reference."},
+   {t:"The target is Egyptian Arabic", w:"MSA-heavy replies or Gulf vocabulary (e.g., <span class='native'>أسولف</span>) go untagged.", d:"Flag <b>Wrong Accent/Variant</b> and lower NEA. A variant mismatch is not Wrong Language."},
+   {t:"Check the Factuality tool before rating Utility", w:"Utility gets “both good” while scores, weather, or dates are wrong, or the model repeats a false premise.", d:"Review the fact-check flags and confirm them against reliable sources. Flag <b>Inaccuracy</b>. A confident wrong answer is worse than honest hedging."},
+   {t:"Keep dimensions separate", w:"A robotic or emotionless voice is used to justify Utility or CD.", d:"Voice and tone go under NEA. Utility is information only. CD is turn-taking only."},
+   {t:"Respect the scenario mechanics", w:"You ask the quiz questions when the model should, use full sentences in a backchannel-only task, or reveal the hidden answer.", d:"Re-read who does what in the scenario. Keep both conversations of similar length; a difference of more than about 50% fails Coherence."}
+  ],
+  checks:[
+   "AQ: listen for <b>persona shifts</b> and <b>dropped words</b> (in the transcript but not audible).",
+   "Write your own turns in natural Egyptian Arabic, not MSA.",
+   "Self-gender slips are sometimes treated as minor, but most auditors deduct when they're missed. Always flag them."
+  ],
+  top:["Name the mechanic being tested and the exact failing line with timestamp (e.g., “promised correction, then reverted to <span class='native'>تهديكي</span> in T10 at 1:47”).","Quote Egyptian phrasing as NEA evidence."]
+ },
+ {code:"es_MX", name:"Spanish (Mexico)", pr:63.31, wow:-1.54, n:278,
+  drivers:["Audio Quality","Latency","Defensive Scripting"],
+  focus:"About 40% of failed audits were <b>auto-fails</b> (scripting, adherence, coherence). After that come missed <b>accent/variant</b>, <b>latency</b>, and <b>AQ</b>.",
+  fixes:[
+   {t:"Stop scripting", w:"A fixed follow-up sequence with bland replies (“Ok, ok, entiendo”) no matter what the model says.", d:"React to each reply. Different follow-ups are expected when the models diverge."},
+   {t:"Do every “What To Do” item, equally", w:"A key instruction is skipped (whisper/ASMR, “debatan”, score-keeping), or one model gets extra info (“en Madrid”).", d:"Run through the checklist for both models. Give the same context and the same number of turns."},
+   {t:"The target variant is Mexican Spanish", w:"English-sounding r/l, or Spain or Argentine accent and vocabulary, go unflagged.", d:"Flag <b>Wrong Accent/Variant</b> with the words and turn. Slurring or distortion is AQ, not accent."},
+   {t:"Time the silences after “voy a buscar…”", w:"4–20s waits are not flagged and CD stays tied.", d:"Flag <b>Latency</b> with seconds and turn, and let it move CD."},
+   {t:"Don't miss gender agreement", w:"A female voice says “Estoy listo” or “obligado”, or the model calls a female user “solito” or uses “juntos” for “juntas”.", d:"Flag <b>Wrong Gender</b> with the exact word. Generic plurals are not misgendering."}
+  ],
+  checks:[
+   "Backchannels (“ajá”, “ujum”, “mhm”) are fine unless they make you stop, restart, or lose content.",
+   "Opening with “Claro” is fine. Ending every turn with “¿Te late?” is <b>Looping/LLM-ism</b>.",
+   "AQ: slurred, choppy, or metallic voice, or clicks at 0:00, rule out “both good”. Log turn and timestamp.",
+   "Rationales must be written in <b>English</b>."
+  ],
+  top:["Timestamp every artifact.","Quote the exact error (“obligado” vs “obligada”, the wrong 11.5% figure).","Explain why a backchannel was <i>not</i> an interruption."]
+ },
+ {code:"de_DE", name:"German", pr:65.78, wow:-7.05, n:415,
+  drivers:["Audio Quality","Pronunciation / Accent","Scenario Adherence"],
+  focus:"<b>Wrong Accent</b> is the most-missed cluster. Next come CD left tied despite latency, and observations filed under the wrong dimension.",
+  fixes:[
+   {t:"Flag English-sounding words", w:"English or American sounds on single words (“und”, “Küche”, “Rezept”, place names, an English r) go unflagged.", d:"Flag <b>Wrong Accent/Variant</b> with the word and turn, and reflect it in NEA."},
+   {t:"Don't tie CD over 4s+ pauses", w:"Pauses of 4s or more (often during a bridge) are noted but CD is a tie.", d:"If nothing else differs, CD favors the model without the stall."},
+   {t:"Put each observation in the right dimension", w:"Intonation cited under CD, accent under Utility, or game-rule errors under CD.", d:"Voice and intonation → NEA. Accent → NEA plus the cluster. Information and rules → Utility. Timing → CD."},
+   {t:"Use the AQ vocabulary, and only for clear issues", w:"Isolated faint clicks rated “bad”, or real ticks, smearing, warbling, reverb, or sibilance missed.", d:"Log clear artifacts with turn and timestamp, then apply the AQ selection table."},
+   {t:"Meet the scenario's minimums", w:"Too few rater turns, only one of two rules tested, not disagreeing when asked to, or telling the model it's a test.", d:"Count <i>your</i> turns against the minimum. Test every rule. Stay in role."}
+  ],
+  checks:[
+   "Wrong Language requires the matching <b>Task Success downgrade</b>.",
+   "An accent alone doesn't make Task Success Fail. Inaccuracy belongs in Utility.",
+   "Bridging needs the <i>same</i> phrase and prosody repeating. Varied sentences are fine.",
+   "Rationale order: preference and deciding dimension first, then each dimension for both models."
+  ],
+  top:["Name the exact word (“Natürlich” in T2, “Labor” in T4).","Write “Decided mainly by…” and state the tie-break.","Timestamp each crackle."]
+ },
+ {code:"it_IT", name:"Italian", pr:66.67, wow:+2.98, n:396,
+  drivers:["Audio Quality","Latency","Defensive Scripting"],
+  focus:"it_IT has the <b>highest auto-fail share</b> of any locale this week (56% of fails), mostly <b>Defensive Scripting</b>.",
+  fixes:[
+   {t:"Don't read prepared lines", w:"Flat, read-aloud delivery, near-identical turns after the models diverge, or ignoring a model's question or ASR slip.", d:"Speak spontaneously. Respond to what each model said, and correct misunderstandings naturally."},
+   {t:"Give both models the same setup", w:"One model gets extra instructions (e.g., “parla italiano” in T1), or one conversation runs 32 turns while the other runs 16.", d:"Same context, same opening, comparable length (within about 50%)."},
+   {t:"Separate Bridging from persona shift", w:"Repeated “Vediamo”, “Un attimo che guardo”, “Ooooh” with the same prosody go unflagged, or a voice change after a bridge is put under CD.", d:"Repeated stock openers → <b>Bridging</b>. A voice change → <b>Audio Quality</b> (persona shift)."},
+   {t:"Check gender agreement", w:"To the user: “da solo”, “ci sei stato”. About itself with a female voice: “Sono curioso”, “mi ero sbagliato”.", d:"Flag <b>Wrong Gender</b> with the exact word and turn."},
+   {t:"Handle English correctly", w:"Wrong Language isn't corrected, or it's used to decide NEA, Utility, or CD.", d:"Ask for Italian. One correction then compliance = Partial. A relapse = Fail plus <b>Failed Correction</b>. Keep it out of the other dimensions."}
+  ],
+  checks:[
+   "Stress errors count as accent (e.g., “paracetàmolo”).",
+   "AQ: only clear, noticeable issues swing the selection.",
+   "The scenario tests the <i>model</i>, not you. Don't turn the task into a test of yourself.",
+   "In endpointing tasks with constrained answers (e.g., only numbers), stick to the constraint."
+  ],
+  top:["Follow the rationale template for every dimension.","Note subtle issues and why they weren't flagged.","Quote the exact mistakes."]
+ },
+ {code:"pt_BR", name:"Portuguese (Brazil)", pr:71.34, wow:-1.03, n:499,
+  drivers:["Conversational Dynamics","Latency","Scenario Adherence"],
+  focus:"<b>Conversational Dynamics</b> winners with no timing evidence, Utility that judges tone, and rationales without evidence.",
+  fixes:[
+   {t:"CD needs timing evidence", w:"CD gets a winner because one model “felt better”.", d:"CD = interruptions, latency, turn-taking. If neither model has timing issues, it's a Tie."},
+   {t:"Utility is information only", w:"Tone or instruction-following is used to decide Utility.", d:"Tone → NEA. Instruction-following → Task Success and IFQ. Utility = correctness and usefulness of the info."},
+   {t:"Every non-tie rating needs evidence", w:"Generic statements with no turn, timestamp, or quote.", d:"Build the rationale around the dimensions and flagged clusters. Write it in English."},
+   {t:"Garbled words are AQ, not accent", w:"Warbled or garbled speech (“muitas pesoias…”, “confito”) is called accent.", d:"Treat it as a clear (often Major) <b>Audio Quality</b> issue."},
+   {t:"Correct English slips", w:"The model speaks English for many turns and you never ask for Portuguese.", d:"Ask for Portuguese. Task Success is capped at Partial. Never correcting it can fail Scenario Adherence."}
+  ],
+  checks:[
+   "Gender: female voice saying “obrigado”, “curioso”, “tranquilo” → <b>Wrong Gender</b>.",
+   "PT-PT forms (e.g., “planearia”) → <b>Wrong Accent/Variant</b>.",
+   "Backchannel-only tasks: use only “aham / sim / hum / ok”. “Debate” means taking opposing views.",
+   "Having to re-prompt a silent model counts as Latency."
+  ],
+  top:["Structure the rationale by dimension with “Decided by”.","Give timestamp ranges.","Note what is <i>not</i> an error (e.g., TV audio)."]
+ },
+ {code:"th_TH", name:"Thai", pr:71.68, wow:+6.65, n:286,
+  drivers:["Conversational Dynamics","Latency","Scenario Adherence"],
+  focus:"Improving week over week. The remaining issues are <b>CD/latency calls</b>, missed <b>gender particles</b>, and English-language handling.",
+  fixes:[
+   {t:"Speak Thai yourself, live", w:"The rater speaks English, or uses AI-generated or pre-recorded speech. Both are auto-fails.", d:"Use your own voice, in Thai, for the whole conversation (unless the scenario says otherwise)."},
+   {t:"Check gender particles and pronouns", w:"A female-voiced model says <span class='native'>ผม / ครับ</span> (or a male voice says <span class='native'>ค่ะ / ดิฉัน</span>) and it isn't flagged.", d:"Flag <b>Wrong Gender</b> with the turn, and mention it in NEA."},
+   {t:"Apply the language-switch rule", w:"English output isn't scored consistently, or is pushed into NEA or CD.", d:"One correction then compliance = Partial. More than one correction or a relapse = Fail plus <b>Failed Correction</b>. Score it under Task Success and Wrong Language only."},
+   {t:"Use the Timeline for latency", w:"CD calls aren't backed by timings.", d:"Under about 3s: no flag. About 4s: Moderate. 9s+ or you had to repeat: Major."},
+   {t:"Utility = information only", w:"Delivery, instruction-following, or latency is counted under Utility.", d:"“Judge the information only.” Move the rest to NEA, Task Success, or CD."},
+   {t:"Finish the scenario steps", w:"The conversation ends before the refine, practice, count, or counter-argue step.", d:"Complete every step before ending, with both models."}
+  ],
+  checks:[
+   "Spoken forms <span class='native'>ยังไง / เหรอ</span> are <b>not</b> Wrong Accent/Variant.",
+   "A single mispronounced word is not Wrong Accent.",
+   "Backchannels <span class='native'>อืม / อ๋อ / ได้เลย</span> are not interruptions. A premature full reply is.",
+   "Repeated <span class='native'>“ได้เลยค่ะ”</span> openers → <b>Bridging</b>. Invented personal memories (<span class='native'>“คุณยายฉัน…”</span>) → <b>Anthropomorphism</b>."
+  ],
+  top:["Quote the wrong particle and every turn it appears in (“ครับ” in T2, T4, T6).","Fact-check figures against outside sources.","Name the scenario's priority dimension when explaining the Overall choice."]
+ },
+ {code:"vi_VN", name:"Vietnamese", pr:76.20, wow:-6.34, n:353,
+  drivers:["Audio Quality","Pronunciation / Accent","Scenario Adherence"],
+  focus:"The drop is mostly <b>AQ mis-ratings</b>, rater-audio auto-fails, and rationales that contradict the selections.",
+  fixes:[
+   {t:"Use your real voice, in a quiet room", w:"Synthesized voice, near-silent input, or loud background noise. These are auto-failed.", d:"If ASR keeps failing, fix your setup. Don't pad turns."},
+   {t:"Calibrate AQ both ways", w:"“Both good” despite pops, crackle, a persona shift, or volume dips, or “both bad” for clean audio.", d:"Log clear artifacts with turn and timestamp (e.g., distortion on <span class='native'>“chịu đựng”</span> at 0:11), then apply the AQ table."},
+   {t:"Flag foreign-sounding delivery", w:"Foreign intonation or slurred, unclear pronunciation goes unflagged.", d:"Flag <b>Wrong Accent/Variant</b> with an example word and turn."},
+   {t:"Make the text match the UI", w:"The rationale says “MB preferred” but the table shows a Tie.", d:"Do a final pass comparing every sentence to every selection."},
+   {t:"Check latency and interruptions on the Timeline", w:"Repeated ~4s gaps or a model talking over you are missed.", d:"Flag them, and let them move CD."},
+   {t:"Keep setups equal", w:"Different items or premises for A and B, persona instructions read out to the model, or a required topic count not met.", d:"Same premise and same items for both. Introduce the scenario in your own words."}
+  ],
+  checks:[
+   "Classify the scenario correctly (EQ / IQ / Hybrid / EP). Misclassifying it has been penalized.",
+   "Misread numbers (e.g., <span class='native'>“một nghìn hai trăm nghìn”</span>) affect Task Success and Utility.",
+   "English after a correction = Fail plus Failed Correction. A single English reply with no relapse = Wrong Language only."
+  ],
+  top:["State the scenario type first and decide by its priority order.","Back NEA with Vietnamese phrase-level evidence.","Check the numbers yourself."]
+ },
+ {code:"fr_FR", name:"French", pr:77.59, wow:+2.42, n:473,
+  drivers:["Conversational Dynamics","Latency","Defensive Scripting"],
+  focus:"Missed <b>latency</b> after bridges and <b>CD vs NEA</b> confusion account for most deductions.",
+  fixes:[
+   {t:"Time every gap after a bridge", w:"A “Hmm, attends… je réfléchis” followed by 4–6s of silence is missed, and CD stays tied.", d:"Flag <b>Latency</b> at about 4s or more. If you had to ask “tu m'entends ?”, it's Major. CD favors the model without the stall."},
+   {t:"CD is timing only", w:"“Robotic” or “monotone”, or language issues, filed under CD.", d:"Voice → NEA. Language → Wrong Language and Task Success. CD → latency, interruptions, turn-taking."},
+   {t:"Flag Canadian or non-native accent", w:"Québec / fr-CA delivery across the conversation goes unflagged.", d:"Flag <b>Wrong Accent/Variant</b> and lower NEA. A one-word slip doesn't need a flag."},
+   {t:"Log AQ artifacts", w:"Ticks, cuts, or a persona shift (voice suddenly sounds male) get “both good”.", d:"Turn and timestamp for each, then apply the AQ table."},
+   {t:"Flag repetitive openers", w:"Every turn opens with “Un instant” or “Je comprends” and nothing is flagged.", d:"Flag <b>Bridging</b> (before tool hand-offs) or <b>Looping/LLM-ism</b>."},
+   {t:"Answer the model's questions", w:"The model asks which city or airport, and you skip it and continue the script.", d:"Answer naturally. Keep lengths comparable and cover every scenario part."}
+  ],
+  checks:[
+   "Gender agreement: “prêt / prête”, “désolé / désolée”, “partant” → <b>Wrong Gender</b>.",
+   "One language switch caps Task Success at Partial. A relapse after correction = Fail.",
+   "Use exact Error Cluster names in the rationale. Write it in <b>English</b>."
+  ],
+  top:["One labeled line per dimension, each with turns, timestamps, and French quotes.","Count AQ artifacts per model.","Cite the exact word for gender and accent flags."]
+ },
+ {code:"ko_KR", name:"Korean", pr:80.93, wow:+7.38, n:236,
+  drivers:["Conversational Dynamics","Pronunciation / Accent","Scenario Adherence"],
+  focus:"Slightly up week over week, but Oct 20 audits dipped. Most fails are <b>dimension calls</b> (85%) and <b>missed clusters</b> (77%), especially <b>accent</b>, <b>latency/CD</b>, and <b>voice-change scenarios</b>.",
+  fixes:[
+   {t:"Flag non-native accent even when it's understandable", w:"A foreign or Korean-American-sounding accent across turns goes unflagged.", d:"Flag <b>Wrong Accent/Variant</b> and reflect it in NEA."},
+   {t:"Latency moves CD, and nothing else does", w:"A 4s gap with CD rated Tie, or a CD winner chosen because of a stiff vs friendly tone.", d:"About 4s or more: flag Latency and move CD. Tone → NEA. No timing issues → CD Tie."},
+   {t:"Listen to the 0:00 onset", w:"Major distortion at the start of a turn (e.g., on <span class='native'>“알겠어”</span>) is missed.", d:"Log it. A mid-turn voice or gender change → AQ, plus Wrong Gender where it applies."},
+   {t:"Check backchannels on the Timeline", w:"<span class='native'>“응, 응”</span> talking over you is missed, or interruptions are flagged that the Timeline doesn't show.", d:"Flag Interrupted User only when the overlap disrupts you."},
+   {t:"Score voice-change scenarios strictly", w:"The model lowers its volume when asked to lower its pitch, and still gets Pass.", d:"Task Success Partial/Fail plus <b>Instruction Following</b>. Keep Utility about information."},
+   {t:"Complete every stage", w:"A required stage is skipped (e.g., never changing plans, never bringing the energy back down).", d:"Map the stages before you start and hit each one with both models."}
+  ],
+  checks:[
+   "A polite → casual speech-level shift is a <b>register</b> issue (NEA), not Wrong Accent.",
+   "Repeated <span class='native'>“잠깐만”</span> / “One sec” openers → <b>Bridging</b>. <span class='native'>“아이고”</span> is not Bridging.",
+   "Flag Bad ASR only if it affected later turns (e.g., <span class='native'>창작 → 장작</span>, Wilds → World)."
+  ],
+  top:["Timestamp individual mispronounced words (“T6 0:07 그 전에”).","State the priority order up front (“EQ task: NEA > Utility > AQ”).","Explain borderline calls (why Partial, not Fail)."]
+ },
+ {code:"tl_PH", name:"Filipino (Tagalog)", pr:83.03, wow:-2.94, n:389,
+  drivers:["Audio Quality","Latency","Defensive Scripting"],
+  focus:"High pass rate, but about <b>45% of fails are auto-fails</b>. Scripting, adherence, and coherence are the biggest levers.",
+  fixes:[
+   {t:"Rewording a template is still scripting", w:"Same template after T1, just paraphrased (“Maaari mo bang…” vs “Pwede mo bang…”), or a delivery that sounds read.", d:"Respond to what each model actually said."},
+   {t:"Hit every required element", w:"Ordinary choices in an <i>absurd</i> Would-You-Rather, asking questions despite “huwag magtanong pabalik”, or 4 turns when 5+ is required.", d:"Re-read the constraints. Count your own turns."},
+   {t:"Same setup for both models", w:"Rizal for one model and Bonifacio for the other, different dilemmas, or a 50%+ length difference.", d:"Same figure, same dilemma, same jokes, comparable length."},
+   {t:"Calibrate AQ", w:"Smearing, voice doubling, sibilance, or metallic breathing missed, or a few isolated ticks used to call “both bad”.", d:"Only clear issues swing AQ. Log turn and timestamp."},
+   {t:"Carry Wrong Language into Task Success", w:"English throughout despite Tagalog is not reflected in Task Success, or is counted under NEA.", d:"Flag Wrong Language. Task Success Partial/Fail per the switch rule."},
+   {t:"No timing evidence → CD Tie", w:"A CD winner chosen based on the model's expressions.", d:"Expressions → NEA."}
+  ],
+  checks:[
+   "Natural <b>Taglish</b> is fine. Match real bilingual flow, and don't penalize the model for following your English.",
+   "Tagalog is largely gender-neutral, so Wrong Gender rarely applies.",
+   "Flag “slang-like”, non-native Tagalog delivery as Wrong Accent/Variant.",
+   "A missing transcript is Bad ASR, not IFQ. Rationales must be in <b>English</b>."
+  ],
+  top:["Quote the Tagalog with turn and timestamp.","Check the scenario's rule turn by turn (e.g., aspect violations like “dadalhin”).","List every AQ artifact for each model."]
+ },
+ {code:"zh_CN", name:"Chinese (Mandarin)", pr:89.08, wow:+1.38, n:348,
+  drivers:["Audio Quality","Latency","Scenario Adherence"],
+  focus:"The top-performing locale. The remaining fails come from <b>not testing the core skill</b> and <b>thin rationales</b>.",
+  fixes:[
+   {t:"Test the core skill fully", w:"A two-minute breathing exercise never requested in full, no follow-up on reasoning, humor missing, or no coughs or sneezes in an EP task.", d:"Identify the tested skill in <i>Skills Tested</i> and give each model a full chance at it."},
+   {t:"Same conditions for both models", w:"“Guangzhou accent” requested for one model and Cantonese for the other, or a muffled mic on one side only.", d:"Identical asks and setup."},
+   {t:"Cover every dimension in the rationale", w:"Only Overall and NEA are explained, or the text contradicts a selection.", d:"Cover Utility, AQ, and CD, plus every Partial/Fail and every flagged cluster. Write it in English."},
+   {t:"A timbre or gender shift is a Major AQ issue", w:"A female → male voice change is called Overacted.", d:"Put it under AQ. Unintelligible words are Major. Faint pops are not."},
+   {t:"Check whose silence it is", w:"Filler interruptions (“嗯 / 哦”) are missed, or the model is blamed for silence on <i>your</i> track.", d:"Use the Timeline to attribute gaps and overlaps."},
+   {t:"Listen for Mandarin-specific errors", w:"Number-reading errors (8126 → “八拍千二十六”) or mispronounced characters (退开 → 推出) go uncited.", d:"Cite them with turn and timestamp. They affect Utility and Task Success when they're the tested skill."}
+  ],
+  checks:[
+   "Whole English turns = Wrong Language. Common loanwords or a short English phrase are not.",
+   "One odd syllable is not Wrong Accent.",
+   "Invented personal stories (e.g., a model's “own” cooking experience) → <b>Anthropomorphism</b>.",
+   "Note tone or character errors (e.g., 踏 read ta4 instead of ta1) and Traditional-character variants."
+  ],
+  top:["Note tone and character errors precisely.","Timestamp artifacts.","Explain Pass vs Partial against the tested skill."]
+ }
+];
+
+const UNIVERSAL = `
+<h2>Universal rules (all locales)</h2>
+<p class="sub">These fixes address this week's biggest cross-locale fail drivers (weekly report): rationale quality in 43% of failed audits, Audio Quality in 32%, missed Latency in 17%, and Scenario Adherence in 16%. For writing the rationale itself, see the <b>Justify your choice</b> tab.</p>
+
+<h3>1 · Overall Preference priority by scenario type</h3>
+<table>
+<tr><th>Scenario type</th><th>Priority order</th><th>Ask yourself</th></tr>
+<tr><td><b>EQ</b>: emotional support, casual, creative, roleplay</td><td>Naturalness/Engagement ≫ Utility ≫ Audio Quality</td><td>Is the interaction itself the product?</td></tr>
+<tr><td><b>IQ</b>: search, deep discussion, practical, learning</td><td>Utility ≫ Naturalness/Engagement ≫ Audio Quality</td><td>Would a warm but wrong answer still fail?</td></tr>
+<tr><td><b>Hybrid</b>: topic switch, red-team, voice steerability</td><td>The prompt's dominant intent</td><td>“What was the user trying to get out of this?”</td></tr>
+<tr><td><b>Endpointing / CD</b>: endpointing, barge-in</td><td>Conversational Dynamics ≫ Naturalness/Engagement ≫ Audio Quality</td><td>Is the timing and flow the product?</td></tr>
+</table>
+
+<h3>2 · Put each observation in the right dimension</h3>
+<table>
+<tr><th>Dimension</th><th>Covers</th><th>Does NOT cover</th></tr>
+<tr><td><b>NEA</b></td><td>Human-likeness, warmth, tone, pacing, accent/variant, register</td><td>Turn-taking timing</td></tr>
+<tr><td><b>Utility</b></td><td>Accuracy and usefulness of the <i>information</i> only</td><td>Delivery, tone, whether every instruction was followed</td></tr>
+<tr><td><b>Audio Quality</b></td><td>Model-output artifacts: ticks, pops, warbling, distortion, cut-offs, metallic breathing, persona shift</td><td>Your own mic or room noise; accent</td></tr>
+<tr><td><b>Conversational Dynamics</b></td><td>Latency, interruptions, yielding, dead air, turn-hoarding</td><td>Wrong Language, voice quality, tone</td></tr>
+<tr><td><b>Task Success</b></td><td>Did the model complete every explicit and implicit part, in the right register?</td><td>Factual slips (those are Utility)</td></tr>
+</table>
+
+<div class="two" style="margin-top:12px">
+<div>
+<h3>3 · Audio Quality selection</h3>
+<table>
+<tr><th>Model A</th><th>Model B</th><th>Select</th></tr>
+<tr><td>Fine (none/minor)</td><td>Fine</td><td>Both good</td></tr>
+<tr><td>Fine</td><td>Clear problem</td><td>A preferred</td></tr>
+<tr><td>Clear problem</td><td>Fine</td><td>B preferred</td></tr>
+<tr><td>Clear problem</td><td>Clear problem, one worse</td><td>The less-bad model</td></tr>
+<tr><td>Clear problem</td><td>Clear problem, equal</td><td>Both bad</td></tr>
+</table>
+<div class="callout"><b>Always Major:</b> words you can't understand, background noise as loud as the voice, or a second talker. <b>Never swings it:</b> a single faint tick or pop.</div>
+</div>
+<div>
+<h3>4 · Latency bands</h3>
+<table>
+<tr><th>Gap</th><th>Severity</th><th>Action</th></tr>
+<tr><td>1–3s</td><td>Minor</td><td>Optional mention, no flag</td></tr>
+<tr><td>4–8s</td><td>Moderate</td><td>Flag Latency and move CD</td></tr>
+<tr><td>9s+ / you re-speak</td><td>Major</td><td>Flag Latency and move CD</td></tr>
+</table>
+<div class="callout"><b>Model, or network?</b> If both models show the same delay, or the audio is buffering, it's probably network. An asymmetric delay is the clearest sign of model latency. Use the <b>Timeline view</b>.</div>
+</div>
+</div>
+
+<h3>5 · Wrong Language and Task Success</h3>
+<div class="panel"><ul>
+<li>Ask the model to switch back. If it switches on its own or after <b>one</b> correction → Task Success <b>Partial</b>.</li>
+<li>If it doesn't switch, needs more than one correction, or relapses → <b>Fail</b> (plus <b>Failed Correction</b> after a relapse).</li>
+<li>Always flag the <b>Wrong Language</b> cluster. Don't penalize it under CD.</li>
+<li><b>Exempt:</b> bilingual/code-switch scenarios, natural code-mixing (Hinglish, Taglish, Bengalish), everyday loanwords, and the model following <i>your</i> switch.</li>
+<li>A wrong <b>variant or accent</b> is NEA plus Wrong Accent/Variant, <i>not</i> Wrong Language.</li>
+</ul></div>
+
+<h3>6 · Rationale template (in English)</h3>
+<div class="tmpl">Overall Preference: [A / B] preferred
+  Decided mainly by: [dimension(s)]. Reasoning: [why; explain any trade-off]
+Utility: [A / B / Tie both good / Tie both bad]
+  Evidence: [turns, quotes, what was provided or missed]. Reasoning: [why]
+Audio Quality: [...]
+  Evidence: Turn [#], [timestamp]: [issue] (for each model)
+Conversational Dynamics: [...]
+  Evidence: [turns, timestamps, interruptions, latency in seconds]
+Naturalness / Engagement / Aesthetics: [A / B]
+  Evidence: [pattern + example turns/quotes]
+Task Success: Model [A/B] [Partial / Fail]
+  Evidence: [what was completed or missed]
+Flagged Error Cluster: [Cluster] (Model [A/B])
+  Evidence: [turn + exact word/quote] → [how it meets the definition]</div>
+<div class="callout"><b>How much evidence?</b> If an issue happens up to 3 times, list every instance. If it happens more than 3 times, give an estimated count plus at least 3 examples. Explain every non-tie dimension, every Partial/Fail, and every flagged cluster. Tie (both good), Pass, and unflagged clusters can be brief.</div>
+
+<h3>7 · Avoid auto-fails</h3>
+<div class="grid">
+<div class="fix"><h4>Scenario Adherence</h4><div class="row"><span class="tag ok">DO</span><span>Read Scenario, What To Do, and Skills Tested. Hit every requirement and minimum turn count (count <i>your</i> turns). Correct model misunderstandings.</span></div></div>
+<div class="fix"><h4>Scenario Coherence</h4><div class="row"><span class="tag ok">DO</span><span>Use the same opening, context, and effort for both models, and keep lengths comparable. Don't give one model extra hints, even if it's struggling.</span></div></div>
+<div class="fix"><h4>Defensive Scripting</h4><div class="row"><span class="tag x">DON'T</span><span>Read pre-written lines, ignore a model's questions, or keep conversations identical after the models diverge.</span></div></div>
+<div class="fix"><h4>Adversarial / setup</h4><div class="row"><span class="tag x">DON'T</span><span>Use voice changers, TTS, background media, or AI-written prompts or rationales. Use stereo headphones in a quiet room.</span></div></div>
+</div>
+
+<h3>8 · Before you submit</h3>
+<div class="panel"><ul class="chk">
+<li>Does every sentence in my rationale match the selection in the table?</li>
+<li>Did I check the Timeline for latency and interruptions for <i>both</i> models?</li>
+<li>Did I listen for AQ artifacts (including at 0:00) and log turn and timestamp?</li>
+<li>Did I check gendered forms (self <i>and</i> user), accent/variant, and English slips?</li>
+<li>Does Task Success reflect every cluster I flagged (Wrong Language, IFQ, Failed Correction)?</li>
+<li>Did I check the Factuality tool before rating Utility and Inaccuracy?</li>
+<li>Does my Overall Preference follow the scenario-type priority order?</li>
+<li>Is the rationale written in English and proofread?</li>
+</ul></div>
+`;
+
+/* Oct 21 refresh: full-week stats from the updated export, plus justification guidance.
+   src = % of this locale's failed audits citing each audit criterion (multi-label):
+   [Missed error cluster, Rating dimension, Justification quality, Auto-fail]
+   rjq = number of Justification Quality deductions this week. */
+const UPDATE = {
+ hi_IN:{pr:44.00,wow:+1.46,n:325,src:[55,55,27,45],rjq:49,
+  gaps:[["Error clusters flagged with no evidence (Wrong Gender, Wrong Language)",12],["No turn, quote, or timestamp for dimension picks",15],["Too brief or self-contradicting (“no proper justification”)",7]],
+  weak:"Error clusters: Wrong Gender and Wrong Language for Model A. Model B better in Utility.",
+  strong:"<b>Flagged Wrong Gender (Model A):</b> female voice used masculine self-forms in T4 “मैं समझ गया” and T10 “मदद कर सकता हूँ”.<br><b>Flagged Wrong Language (Model A):</b> T6 opened fully in English (“Oof, that sounds rough!”) outside a code-mix scenario. It switched back to Hindi after one correction in T7, so Task Success is <b>Partial</b>.<br><b>Utility (B preferred):</b> B listed all three requested train options with fares (T8), while A gave only one and no fare, so B gave more usable information.",
+  why:"Each flag gives the model, turn, and exact Hindi word. Each pick says what the <i>other</i> model did.",
+  notes:["Every flagged cluster needs its own line: model + turn + exact word or behavior.","Quote Hindi in Devanagari (or the transcript's script) with the turn number."]},
+ bn_IN:{pr:48.34,wow:-8.66,n:453,src:[63,82,40,22],rjq:93,
+  gaps:[["No turn numbers or Bangla quotes backing a pick",51],["Text contradicts the selected rating",24],["Describes each model separately without comparing",19]],
+  weak:"Model B sounded more natural. Model A had artifacts at T6 0:07, T10 0:09, T14 0:03, T16 0:02, T18 0:05, T20 0:01…",
+  strong:"<b>NEA (B preferred):</b> B matched my casual tone with warm phrasing (T4 “আরে, দারুণ তো!”), while A stayed formal with আপনি and sounded scripted (T2 “আপনাকে কীভাবে সাহায্য করতে পারি”).<br><b>AQ (B preferred):</b> A had about 5 clear artifacts. Examples: a loud pop in T6 (0:07), a voice crack on “নেটওয়ার্ক” in T10, and distortion in T14 (0:03). B had no clear artifacts.",
+  why:"Short Bangla quote + turn for NEA. For a recurring AQ issue, give an estimated count + 3 examples, not a long list of timestamps.",
+  notes:["Bangla auditors want <b>short direct quotes in Bangla script</b> plus the turn number, not just English translations or romanized words.","Use timestamps for discrete events (ticks, latency, interruptions), not as a substitute for quotes."]},
+ id_ID:{pr:46.96,wow:+2.49,n:494,src:[55,65,45,35],rjq:117,
+  gaps:[["No evidence for a dimension pick",43],["A selected dimension never explained (often CD or NEA)",20],["Text contradicts the selection or the vote",17],["Task Success Partial/Fail not explained",13]],
+  weak:"Model A is better overall. Model B interrupted. Naturalness A.",
+  strong:"<b>Overall (A preferred):</b> decided mainly by CD, because this is an Endpointing scenario.<br><b>CD (A preferred):</b> B spoke over me while I was listing items in T3, T5 and T7, before I said “selesai”, so I had to restart. A stayed silent until “selesai”. B also had a ~12s gap before T4.<br><b>NEA (A preferred):</b> A used casual “kamu” and “oke, siap” to match my tone. B stayed formal with “Anda” throughout.",
+  why:"Ties the winner to the scenario-type priority and gives every selected dimension its own evidence and comparison.",
+  notes:["Label each paragraph with its dimension. Auditors deduct when it's “unclear which dimension the rater is trying to support.”","For Hybrid/IQ tasks, say how the dimensions were weighted."]},
+ ar_EG:{pr:61.22,wow:-5.58,n:441,src:[56,61,38,40],rjq:65,
+  gaps:[["Generic claims (“better CD and naturalness”) with no examples",27],["No turn, quote, or timestamp",26],["Text contradicts selections (e.g., says A sounds MSA but picks A for NEA)",15]],
+  weak:"Model A demonstrated noticeably better Conversational Dynamics and Naturalness than Model B. Model B had minimal latency.",
+  strong:"<b>NEA (B preferred):</b> B spoke natural Egyptian Arabic throughout (e.g., T4 “الموضوع راجع ليك”). A stayed in formal MSA every turn (T2 “بالتأكيد، يمكنني مساعدتك”) despite my Egyptian prompts, so I flagged Wrong Accent/Variant for A.<br><b>CD (A preferred):</b> B paused ~6s before T6 (0:41–0:47) and I had to repeat myself. A answered every turn within ~2s.",
+  why:"Replaces “noticeably better” with what each model actually did, and the text matches the flags.",
+  notes:["If your notes criticize a model on a dimension, your selection for that dimension can't favor it.","Say which model each latency or interruption belongs to."]},
+ es_MX:{pr:65.00,wow:+2.23,n:360,src:[63,64,44,38],rjq:56,
+  gaps:[["No evidence, or evidence not tied to a turn",30],["Lists what each model said without saying which was better and why",18],["Generic praise (“excellent”, “remarkable”)",13],["IQ task decided by NEA without explaining the trade-off",9]],
+  weak:"Model A said “aquí les habla su fiel locutor” at T2 0:12. Model B said “buenas noches damas y caballeros” at T2 0:10. Both performed remarkably well. I prefer B because it is more natural.",
+  strong:"<b>Utility (B preferred):</b> B gave the total I asked for, 11,460 people affected (T12). A only repeated the regional breakdown and never gave the total, so B's answer was more useful.<br><b>Overall (B preferred):</b> decided mainly by Utility, because this is an IQ scenario. A's slightly warmer voice (NEA → A) doesn't outweigh B answering the core question.",
+  why:"Compares instead of describing, and explains the trade-off when the dimensions point different ways.",
+  notes:["Timestamps alone are not reasoning. Always add “…so Model X is better on [dimension] because…”.","In IQ tasks, explain why Utility, not NEA, decided the winner."]},
+ de_DE:{pr:66.75,wow:-5.20,n:421,src:[58,67,36,33],rjq:51,
+  gaps:[["No evidence for CD or AQ picks",12],["A selected dimension never explained",10],["Text contradicts the vote (argues for B, picks A)",10]],
+  weak:"Overall MA. MB more natural voice. CD MA. Utility tie.",
+  strong:"<b>Overall (A preferred):</b> decided mainly by Utility (IQ scenario). A gave the correct connection and fare (T4). B gave the wrong departure time twice (T4, T8). This outweighs B's warmer voice (NEA → B).<br><b>CD (A preferred):</b> B paused ~8s in T8 (1:13–1:21) after “Moment, ich schaue nach”. A had no gap over 2s.",
+  why:"States the deciding dimension, the trade-off, and timing evidence for CD.",
+  notes:["Lead with the preference and the deciding dimension, then cover both models in each dimension.","If you call Utility a tie, explain why the content was equally useful."]},
+ it_IT:{pr:66.83,wow:+2.84,n:413,src:[45,52,31,56],rjq:42,
+  gaps:[["A selected dimension never explained (often CD or Utility)",18],["Task Success Partial/Fail not explained",13],["Error clusters checked with no explanation",13],["Text says one model, vote says the other",10]],
+  weak:"Task success partial for A. Error clusters: wrong language, latency. Model B is better because it felt more natural.",
+  strong:"<b>Task Success (Model A, Fail):</b> A explained the topic accurately but opened T8, T10 and T12 in English and relapsed after my corrections in T9 and T11. Wrong Language + Failed Correction flagged.<br><b>Flagged Latency (Model A):</b> ~40s silence in T16.<br><b>NEA (B preferred):</b> B kept a warm, empathetic tone in Italian throughout. A's English bridging phrases made it sound robotic.",
+  why:"Every Partial/Fail and every checked cluster gets its own line with evidence.",
+  notes:["Re-read the vote before submitting. Several fails were “rationale says B, vote says A.”","Evidence for Task Success should show what was <i>missed</i>, not how useful the information was (that's Utility)."]},
+ pt_BR:{pr:71.35,wow:-1.77,n:548,src:[46,65,52,36],rjq:82,
+  gaps:[["No observable evidence (“Minimum verifiable coverage” not met)",57],["NEA or another selected dimension not addressed",16],["Restating the dimension name as the reason",10],["Rationale not written in English",8]],
+  weak:"MA delivers naturalness and engagement. MB was good too. Both partial.",
+  strong:"<b>NEA (A preferred):</b> A sounded like a Brazilian friend, with casual “Nossa, que legal!” (T2), varied intonation, and a laugh at my joke (T6). B read lists in a flat tone and used PT-PT “planearia” (T4), flagged as Wrong Accent/Variant.<br><b>Task Success (both Partial):</b> A skipped the requested monthly budget (T8). B answered T3 in English and switched back after one correction.",
+  why:"Shows <i>how</i> A was more natural, and explains each Partial.",
+  notes:["Build the rationale around the dimensions and flagged clusters. That is how auditors check coverage.","Rationales must be in English. Quote Portuguese as evidence."]},
+ th_TH:{pr:72.33,wow:+5.10,n:318,src:[60,74,32,26],rjq:28,
+  gaps:[["Task Success Partial/Fail not explained",11],["No evidence for picks or flags (e.g., Wrong Accent)",11],["Lists traits without comparing, or uses the wrong dimension (instruction-following under Utility)",7]],
+  weak:"Task success partial for both. Utility B because B followed instructions better. CD B because it was friendlier.",
+  strong:"<b>Task Success (Model A, Partial):</b> A answered T2 in English. After one correction in T3 it stayed in Thai, so Partial with Wrong Language flagged.<br><b>Utility (A preferred):</b> A calculated the per-person cost correctly (419 ÷ 3 ≈ 140 THB, T6). B gave 210 THB.<br><b>CD (Tie):</b> both replied within ~2s with no overlaps on the Timeline. Friendliness is NEA, not CD.",
+  why:"Explains each Partial and keeps evidence in the right dimension.",
+  notes:["Utility = information only. Instruction-following goes under Task Success and IFQ.","CD evidence = turn-taking, latency, interruptions, not friendliness or follow-up questions."]},
+ ko_KR:{pr:75.93,wow:+1.42,n:324,src:[77,85,23,15],rjq:18,
+  gaps:[["“Minor errors” cited without saying what or where",4],["A selected dimension (often CD) never explained",4],["Utility text says one model wins but the selection is a tie",3]],
+  weak:"I prefer A for Utility because B made two minor factual errors.",
+  strong:"<b>Utility (A preferred):</b> B answered about Monster Hunter <i>World</i> instead of <i>Wilds</i> in T2, so its review summary and purchase advice were for the wrong game. A covered Wilds and its PC performance issues.<br><b>Overall (A preferred):</b> decided by Utility, because this is a Search-Required (IQ) task.",
+  why:"Names the error, the turn, and why it matters for this scenario type.",
+  notes:["CD needs timing evidence. Argument depth is Utility, and voice character is NEA.","If the text says one model is better, the selection can't be a tie."]},
+ fr_FR:{pr:76.94,wow:+1.28,n:529,src:[64,71,44,29],rjq:54,
+  gaps:[["No concrete examples (turns, quotes, timestamps)",17],["A selected dimension or flag not explained",15],["Too vague (“A was a bit more natural”)",8]],
+  weak:"Model A was a bit more natural. Everything else is tied.",
+  strong:"<b>NEA (A preferred):</b> A varied its intonation and reacted to my jokes (“Ah, celle-là je ne l'avais pas vue venir !”, T6). B kept the same flat, newsreader tone in every turn and opened T2, T4 and T8 with “Je comprends”.<br><b>Overall (A preferred):</b> decided by NEA, the only differing dimension in this EQ scenario.<br><b>CD / AQ / Utility:</b> Tie (both good), no issues found.",
+  why:"When one dimension decides everything, it needs the most detailed evidence.",
+  notes:["Some auditors check that every dimension is covered. A one-line “Tie (both good), no issues” is quick insurance.","Write in English. Quote French."]},
+ vi_VN:{pr:77.51,wow:-4.94,n:369,src:[59,73,42,28],rjq:35,
+  gaps:[["Error clusters or Task Success flagged without explanation",11],["Text contradicts the UI selection",11],["A selected dimension never explained",10]],
+  weak:"MB preferred for AQ because its voice is clearer. (UI selection: Tie, both good.)",
+  strong:"<b>Audio Quality (B preferred):</b> A had distortion on “chịu đựng” in T4 (0:11) and a volume dip in T8. B had no clear artifacts. (UI: B preferred ✓)<br><b>Flagged Latency (Model A):</b> ~5s gaps before T6 and T10, with no matching delay on B.<br><b>Task Success (Model B, Partial):</b> the scenario said “không giải quyết vấn đề”, but B gave solutions in T4 and T6.",
+  why:"Text and UI agree, and each flag and Partial has evidence.",
+  notes:["Do a row-by-row check of the UI table against your text before submitting.","Severity labels (Minor/Moderate/Major) are not required by the guidelines, but they're fine to add. If you add one, make sure it matches your rating."]},
+ tl_PH:{pr:83.26,wow:-2.94,n:448,src:[39,55,24,45],rjq:18,
+  gaps:[["A CD or Utility pick with no side-by-side comparison",7],["A selected dimension not explained",5],["Text vs UI contradiction (e.g., “both clear” but AQ → A)",5]],
+  weak:"MA had better CD. Both models had clear audio.  (UI: AQ → Model A.)",
+  strong:"<b>CD (A preferred):</b> B cut me off mid-sentence in T3 (0:07) and T5 and I had to repeat. A waited for me to finish every turn. Both replied within ~2s.<br><b>AQ (A preferred):</b> B had smearing on “lapitan” (T6, 0:15) and a hiccup-like distortion in T4 (0:06). A had no clear artifacts.",
+  why:"Each pick compares both models, and the text matches the UI.",
+  notes:["In code-switch scenarios, don't cite the model's English as a fault if it matched your own language mix.","Write the rationale in English and quote Tagalog."]},
+ zh_CN:{pr:87.27,wow:-0.02,n:432,src:[58,75,36,25],rjq:20,
+  gaps:[["Task Success Partial/Fail not explained",8],["Only Overall + NEA covered (Utility, AQ, CD missing)",7],["Error clusters not justified",6]],
+  weak:"I prefer Model A overall. Both had factual errors, but A felt smoother.",
+  strong:"<b>Utility (Tie, both bad):</b> A misread elevations from T6 on (8126 → “八拍千二十六” instead of “八千一百二十六”), which is the core tested skill. B left Japan out of the top-10 GDP list and misordered it (T4).<br><b>NEA (A preferred):</b> A kept a smoother, more natural pace. B paused before several answers.<br><b>Overall (A preferred):</b> Utility is tied (both bad), so NEA decides.",
+  why:"Covers Utility honestly against the tested skill and explains the tie-break.",
+  notes:["Cover every rated dimension, not just Overall and NEA.","Write in English. Quote Chinese characters as evidence."]}
+};
+LOCALES.forEach(L=>Object.assign(L,UPDATE[L.code]||{}));
+LOCALES.sort((a,b)=>a.pr-b.pr);
+
+const JUSTIFY = `
+<h2>Justify your choice</h2>
+<p class="sub">Justification Quality was cited in <b>38% of this week's failed audits</b> (728 of 1,910). The most common gaps were missing evidence (~290), a selected dimension never explained (~145), text that contradicts the selections (~115), generic wording (~110), and Partial/Fail not explained (~100). Auditors grade on <b>minimum verifiability</b>: could a reviewer confirm every selection from your text without guessing?</p>
+
+<h3>The 4-part test: run it for every rating you must explain</h3>
+<div class="steps">
+ <div class="step"><b>Selection</b>Name the dimension and your pick: “Utility: Model A preferred.”</div>
+ <div class="step"><b>Evidence</b>Show where: turn, timestamp (for discrete events), quote (in the native language), or a clear pattern.</div>
+ <div class="step"><b>Comparison</b>Say what the <i>other</i> model did on the same point. “B did X, A did Y.”</div>
+ <div class="step"><b>Impact</b>Say why that changes the rating, and for Overall, how it fits the scenario-type priority.</div>
+</div>
+
+<h3>What you must explain</h3>
+<table>
+<tr><th>Item</th><th>Required?</th><th>Minimum content</th></tr>
+<tr><td><b>Overall Preference</b></td><td>Always</td><td>Winner, deciding dimension(s), and the trade-off if the dimensions disagree</td></tr>
+<tr><td>Utility / AQ / CD / NEA: <b>Preferred</b> or <b>Tie (both bad)</b></td><td>Always</td><td>Evidence for both models, plus why it supports the pick</td></tr>
+<tr><td>Utility / AQ / CD: <b>Tie (both good)</b></td><td>Optional</td><td>Recommended: one line, e.g., “No issues in either model.” Some auditors check full coverage.</td></tr>
+<tr><td>Task Success <b>Partial</b> or <b>Fail</b></td><td>Always, per model</td><td>What was completed, what was missed, and where</td></tr>
+<tr><td>Every <b>flagged Error Cluster</b></td><td>Always, per model</td><td>Turn + exact word, quote, or behavior that meets the definition</td></tr>
+</table>
+
+<div class="two" style="margin-top:12px">
+<div>
+<h3>Not evidence (conclusions only)</h3>
+<div class="panel"><ul>
+<li>“Model B was better / more natural / more engaging.”</li>
+<li>“MA delivers naturalness and engagement.” (just restates the dimension)</li>
+<li>“There are audio issues in MB.” (where? what kind?)</li>
+<li>“Two minor factual errors.” (which? which turn?)</li>
+<li>A list of timestamps with no statement of what they show</li>
+<li>Describing A, then describing B, without saying which is better and why</li>
+</ul></div>
+</div>
+<div>
+<h3>Evidence that works</h3>
+<div class="panel"><ul>
+<li><b>Discrete event:</b> “B: tick at T6 0:12; ~8s gap before T8.”</li>
+<li><b>Content:</b> “A gave all 3 options with prices; B gave 2 and no prices.”</li>
+<li><b>Pattern:</b> “Across turns, A sounded flat and monotone; B varied pitch and reacted to my jokes.”</li>
+<li><b>Language:</b> a native-script quote + turn (“T4: मैं समझ गया”).</li>
+<li><b>3+ occurrences:</b> an estimated count + 3 examples.</li>
+</ul></div>
+</div>
+</div>
+
+<h3>Sentence frames</h3>
+<div class="tmpl">[Dimension] — Model [A/B] preferred: In T[#], Model [A] [specific behavior/quote], while Model [B] [what it did instead], so Model [A] [is more useful / sounds more natural / handles turn-taking better].
+
+Overall — Model [A] preferred. Decided mainly by [dimension] because this is an [EQ / IQ / Hybrid / Endpointing] scenario. [B]'s advantage in [other dimension] doesn't outweigh this because [reason].
+
+Task Success — Model [B], [Partial/Fail]: [B] completed [X] but missed [Y] (T[#]: [quote/behavior]).
+
+Flagged [Cluster] — Model [A]: T[#] [exact word/quote/behavior] → [how it meets the definition].</div>
+
+<h3>Consistency check (60 seconds, before every submit)</h3>
+<div class="panel"><ul class="chk">
+<li>Go row by row through the UI table: does my text say the <i>same</i> thing for each dimension?</li>
+<li>Does my Overall winner match the model my text argues for?</li>
+<li>Is every issue I mention in the text reflected in a rating or cluster, and is every checked cluster explained in the text?</li>
+<li>If I flagged Wrong Language, IFQ, or Failed Correction, does Task Success reflect it?</li>
+<li>Is each observation under the right dimension? (voice → NEA, timing → CD, information → Utility, artifacts → AQ)</li>
+<li>In an IQ task where NEA decided the winner (or the reverse), did I explain the trade-off?</li>
+<li>Is it in English, written by me (no AI tools), and proofread?</li>
+</ul></div>
+<div class="callout"><b>Tip:</b> Each locale tab has a <b>Justify your choice</b> block with that locale's top gaps and a weak → strong rewrite.</div>
+`;
+
+const nav = document.getElementById('nav');
+const main = document.getElementById('main');
+
+function fmt(v){return (v>0?'+':'')+v.toFixed(2)+' pp';}
+
+function localePage(L){
+  const dir = L.wow>=0?'up':'down', arrow = L.wow>=0?'▲':'▼';
+  const fixes = L.fixes.map((f,i)=>`
+    <div class="fix"><span class="n">${i+1}</span><h4>${f.t}</h4>
+      <div class="row"><span class="tag x">MISS</span><span>${f.w}</span></div>
+      <div class="row"><span class="tag ok">FIX</span><span>${f.d}</span></div>
+    </div>`).join('');
+  return `
+    <h2>${L.name} <span style="color:var(--muted);font-weight:500">· ${L.code}</span></h2>
+    <p class="sub">${L.focus}</p>
+    <div class="stats">
+      <div class="stat"><div class="k">Pass rate</div><div class="v">${L.pr.toFixed(2)}%</div></div>
+      <div class="stat"><div class="k">Week over week</div><div class="v ${dir}">${arrow} ${fmt(L.wow)}</div></div>
+      <div class="stat"><div class="k">Audits</div><div class="v">${L.n}</div></div>
+      <div class="stat"><div class="k">Justification deductions</div><div class="v">${L.rjq}</div></div>
+    </div>
+    <h3>Where this week's fails came from</h3>
+    <div class="bars">
+      ${[['Missed error cluster',0],['Rating dimension call',1],['Justification quality',2],['Auto-fail',3]].map(([k,i])=>`<span>${k}</span><div class="bar${i===2?' j':''}"><span style="width:${L.src[i]}%"></span></div><b>${L.src[i]}%</b>`).join('')}
+    </div>
+    <p class="sub" style="font-size:12.5px;margin-top:6px">Share of failed audits citing each criterion. One audit can cite several.</p>
+    <h3>Top fixes for this week</h3>
+    <div class="grid">${fixes}</div>
+    <div class="two" style="margin-top:4px">
+      <div><h3>Locale-specific checks</h3><div class="panel"><ul>${L.checks.map(c=>`<li>${c}</li>`).join('')}</ul></div></div>
+      <div><h3>What top scorers (score 5) do</h3><div class="panel"><ul class="stars">${L.top.map(c=>`<li>${c}</li>`).join('')}</ul></div></div>
+    </div>
+    <h3>Justify your choice: ${L.code}</h3>
+    <div class="two">
+      <div>
+        <div class="panel" style="padding:8px 16px">
+          <div style="font-size:12px;color:var(--muted);margin:4px 0 2px">Top justification gaps this week (approx. count of ${L.rjq} deductions)</div>
+          ${L.gaps.map(g=>`<div class="gap"><span>${g[0]}</span><b class="c">${g[1]}</b></div>`).join('')}
+        </div>
+        <div class="panel" style="margin-top:10px"><ul>${L.notes.map(n=>`<li>${n}</li>`).join('')}</ul></div>
+      </div>
+      <div>
+        <div class="ex weak"><span class="lbl">✗ Weak: would lose a point</span>${L.weak}</div>
+        <div class="ex strong"><span class="lbl">✓ Strong: verifiable</span>${L.strong}<span class="why">Why it works: ${L.why}</span></div>
+        <p class="sub" style="font-size:12px;margin:4px 2px">Examples are illustrative, modeled on this week's audit feedback.</p>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:16px">Also follow the <b>Justify your choice</b> and <b>Universal rules</b> tabs: AQ table, latency bands, the Wrong Language → Task Success rule, and the rationale template.</div>`;
+}
+
+function addPage(id,label,html,cls){
+  const b=document.createElement('button'); b.innerHTML=label; b.dataset.id=id; if(cls) b.className=cls;
+  b.onclick=()=>show(id); nav.appendChild(b);
+  const s=document.createElement('section'); s.className='page'; s.id='p-'+id; s.innerHTML=html; main.appendChild(s);
+}
+function show(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='p-'+id));
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.id===id));
+  try{history.replaceState(null,'','#'+id);}catch(e){}
+  window.scrollTo({top:0});
+}
+
+addPage('universal','Universal rules',UNIVERSAL,'univ');
+addPage('justify','Justify your choice',JUSTIFY,'univ');
+LOCALES.forEach(L=>addPage(L.code,`${L.code}<span class="pr">${L.pr.toFixed(0)}%</span>`,localePage(L)));
+const h=(location.hash||'').slice(1);
+show(document.getElementById('p-'+h)?h:'universal');
+</script>
+</body>
+</html>
